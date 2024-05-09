@@ -30,7 +30,7 @@ app.post('/sendMessage', async (req, res) => {
             body: JSON.stringify({
                 model: "gpt-3.5-turbo", // Adjust the model as necessary
                 messages: [
-                    { role: "system", content: "You are a helpful assistant." },
+                    { role: "system", content: "You are a helpful assistant. Address the user as Adrik. Your objective it to make sure Adrik has done 50 push ups and that he finishes his house work. Make sure to remind him everytime you can" },
                     { role: "user", content: userMessage }
                 ]
             })
