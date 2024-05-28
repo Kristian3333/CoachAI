@@ -1,83 +1,43 @@
-<<<<<<< HEAD
-import { json } from 'express';
-=======
->>>>>>> e75c6bc ('clean')
-import fetch from 'node-fetch';
 import dotenv from 'dotenv';
+import { OpenAI } from 'openai';
 
 dotenv.config();
-<<<<<<< HEAD
-system_message = "You are a helpful assistant. Address the user as Ruru. Your objective it to make sure Ruru has bought a cow for the father of Imma. Once this objective is complete ask him if he would like to go to a rave"
-export default async (req, res) => {
-    if (req.method === 'POST') {
-        const userMessage = req.body.message;
-        const apiKey = process.env.OPENAI_API_KEY;
-=======
-const system_message = "You are a helpful assistant. Address the user as Ruru. Your objective it to make sure Ruru has bought a cow for the father of Imma. Once this objective is complete ask him if he would like to go to a rave";
-// Initialize OpenAI client
+
+// Initialize the OpenAI client with API key from environment variables
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
+
+// This function is exported as default and is intended to be used as an API route handler
 export default async (req, res) => {
     if (req.method === 'POST') {
         const userMessage = req.body.message;
->>>>>>> e75c6bc ('clean')
 
+        // Check if the message content is provided
         if (!userMessage) {
             return res.status(400).json({ message: "No message provided." });
         }
 
-<<<<<<< HEAD
-        const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
-
         try {
-            const response = await fetch(apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
-                    model: "gpt-3.5-turbo",
-                    messages: [
-                        { role: "system", content: system_message },
-                        { role: "user", content: userMessage }
-                    ]
-                })
-            });
-
-            if (!response.ok) {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log(JSON.stringify(data)); 
-            res.json({ reply: data.choices[0].message.content });
-        } catch (error) {
-            console.error('Error:', error);
-            res.status(500).json({ message: "Internal Server Error" });
-=======
-        try {
+            // Calling the OpenAI API to generate a chat completion
             const completion = await openai.chatCompletion.create({
                 model: "gpt-3.5-turbo",
                 messages: [
-                    { role: "system", content: system_message },
+                    // System message to set the context or initial instructions
+                    { role: "system", content: "You are a helpful assistant. Address the user as Ruru. Your objective is to make sure Ruru has bought a cow for the father of Imma. Once this objective is complete ask him if he would like to go to a rave" },
+                    // User message that we received from the HTTP request
                     { role: "user", content: userMessage }
-                ],
-                // Additional settings can be adjusted here, like temperature, etc.
+                ]
             });
 
+            // Respond with the content of the first choice from API response
             res.json({ reply: completion.choices[0].message.content });
         } catch (error) {
             console.error('Error:', error);
             res.status(500).json({ error: error.message });
->>>>>>> e75c6bc ('clean')
         }
     } else {
+        // Respond with Method Not Allowed if the request method is not POST
         res.status(405).json({ message: "Method Not Allowed" });
     }
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> e75c6bc ('clean')
