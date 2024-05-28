@@ -36,6 +36,7 @@ export default async (req, res) => {
             }
 
             const data = await response.json();
+            console.log(JSON.stringify(data)); 
             res.json({ reply: data.choices[0].message.content });
         } catch (error) {
             console.error('Error:', error);
