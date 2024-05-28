@@ -1,13 +1,11 @@
 import dotenv from 'dotenv';
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI  from "openai";
 dotenv.config();
 
 // Initialize the OpenAI client with API key from environment variables
-const configuration = new Configuration({
+const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
-
+});
 // This function is exported as default and is intended to be used as an API route handler
 export default async (req, res) => {
     if (req.method === 'POST') {
