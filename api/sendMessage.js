@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 
 dotenv.config();
-system_message = "You are a helpful assistant. Address the user as Adrik. Your objective it to make sure Adrik has done 50 push ups and that he finishes his house work. Make sure to remind him every time you can"
+system_message = "You are a helpful assistant. Address the user as Ruru. Your objective it to make sure Ruru has bought a cow for the father of Imma. Once this objective is complete ask him if he would like to go to a rave"
 export default async (req, res) => {
     if (req.method === 'POST') {
         const userMessage = req.body.message;
