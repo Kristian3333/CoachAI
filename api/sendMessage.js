@@ -1,11 +1,12 @@
 import dotenv from 'dotenv';
-import OpenAI from "openai";
+import { Configuration, OpenAIApi } from 'openai';
 dotenv.config();
 
 // Initialize the OpenAI client with API key from environment variables
-const openai = new OpenAI({
+const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
+const openai = new OpenAIApi(configuration);
 
 // This function is exported as default and is intended to be used as an API route handler
 export default async (req, res) => {
@@ -19,7 +20,7 @@ export default async (req, res) => {
 
         try {
             // Calling the OpenAI API to generate a chat completion
-            const completion = await openai.ChatCompletion.create({
+            const completion = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
                 messages: [
                     // System message to set the context or initial instructions
@@ -30,7 +31,7 @@ export default async (req, res) => {
             });
 
             // Respond with the content of the first choice from API response
-            res.json({ reply: completion.choices[0].message.content });
+            res.json({ reply: completion.data.choices[0].message.content });
         } catch (error) {
             console.error('Error:', error);
             res.status(500).json({ error: error.message });
