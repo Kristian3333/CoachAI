@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Interface</title>
+    <title>Submit Your Goals</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>Welcome to Our Service</h1>
-        </div>
+        <h1>Hello!</h1>
     </header>
 
     <div id="main-content">
-        <p>Hello! Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
-        <button>Click Here</button>
-    </div>
+        <p> Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
+        
+        <!-- Form for submitting goals -->
+        <form action="/api/posts.js" method="POST">
+            <label for="firstGoal">Introduce your first goal here:</label>
+            <input type="text" id="firstGoal" name="firstGoal" required>
 
-    <div id="chatInterface">
-        <div id="chatOutput">
-            <!-- Chat messages will appear here -->
-        </div>
-        <input type="text" id="userInput" placeholder="Type your message...">
+            <label for="secondGoal">Introduce your second goal here:</label>
+            <input type="text" id="secondGoal" name="secondGoal" required>
+
+            <button type="submit">Submit!</button>
+        </form>
     </div>
 
     <footer>
