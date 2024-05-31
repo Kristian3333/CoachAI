@@ -1,12 +1,14 @@
-// api/posts.js
-const express = require('express');
-const dbConnect = require('../lib/dbConnect');
-const Goal = require('../models/Goal');
+// ES Module imports
+import express from 'express';
+import dbConnect from '../lib/dbConnect.js';
+import Goal from '../models/Goal.js';
 
 const router = express.Router();
-router.use(bodyParser.json());
-router.use(express.json()); 
 
+// Use express.json() middleware for parsing JSON bodies
+router.use(express.json());
+
+// GET route
 router.get('/goals', async (req, res) => {
     try {
         await dbConnect(); // Ensure database connection
@@ -18,9 +20,18 @@ router.get('/goals', async (req, res) => {
     }
 });
 
-router.post('/posts', (req, res) => {
-    console.log(req.body); // Replace with actual database handling logic or further processing
-    res.status(200).json({ message: "Data received successfully!" });
+// POST route
+router.post('/posts', async (req, res) => {
+    try {
+        await dbConnect();
+        const newGoal = new Goal(req.body);
+        const savedGoal = await newGoal.save();
+        res.status(201).json(savedGoal);
+    } catch (error) {
+        console.error('Error saving new goal:', error);
+        res.status(500).send('Failed to save goal');
+    }
 });
 
-module.exports = router;
+// Export the router
+export default router;
