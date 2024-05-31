@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CoachAI Chat</title>
-<style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; }
-    #chat { width: 300px; height: 400px; border: 1px solid #ccc; display: flex; justify-content: center; align-items: center; }
-    a { text-decoration: none; color: blue; font-size: 16px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Interface</title>
+    <link rel="stylesheet" href="style.css"> <!-- Assuming you have a CSS file -->
+    <script src="script.js" defer></script> <!-- Ensure script.js is the correct path to your JavaScript file -->
 </head>
 <body>
-<div id="chat">
-    <a href="#" onclick="alert('Chat opening...');">Click to open chat</a>
-</div>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle"><i class="fas fa-moon"></i></button>
+
+    <!-- Floating Image to Open Chat -->
+    <img id="floatingImage" src="path/to/image.png" alt="Open Chat" style="cursor: pointer;">
+
+    <!-- Chat Interface, initially hidden -->
+    <div id="chatInterface" style="display: none;">
+        <div id="chatOutput" style="height: 300px; overflow-y: auto; background-color: #ccc; padding: 10px;">
+            <!-- Messages will be displayed here -->
+        </div>
+        <input type="text" id="userInput" placeholder="Type your message here..." style="width: 80%;">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <!-- Placeholder for chatText, adjust as needed -->
+    <div id="chatText" style="position: fixed; right: 20px; top: 210px;">
+        <!-- Additional text or status can be displayed here -->
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- Load Font Awesome for icons -->
 </body>
 </html>
