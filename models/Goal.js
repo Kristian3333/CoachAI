@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema({
     name: String,
@@ -7,5 +7,8 @@ const PostSchema = new mongoose.Schema({
     second_goal: String,
 });
 
+// Use existing model if it already exists or create a new one
 const Goal = mongoose.models.Post || mongoose.model('Goal', PostSchema);
-module.exports = Goal;
+
+// Export the Goal model using ES Modules syntax
+export default Goal;
