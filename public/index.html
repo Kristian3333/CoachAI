@@ -16,6 +16,12 @@
         
         <!-- Form for submitting goals -->
         <form action="/api/posts.js" method="POST">
+            <label for="name">Introduce your name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Introduce your email:</label>
+            <input type="text" id="email" name="email" required>
+
             <label for="firstGoal">Introduce your first goal here:</label>
             <input type="text" id="firstGoal" name="firstGoal" required>
 
