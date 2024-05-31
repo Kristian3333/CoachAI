@@ -12,39 +12,57 @@
     <form id="goalForm">
         <label for="name">Introduce your name:</label>
         <input type="text" id="name" name="name"><br>
-
+    
         <label for="email">Introduce your email:</label>
         <input type="email" id="email" name="email"><br>
-
+    
         <label for="goalInput">Introduce your first goal here:</label>
         <input type="text" id="goalInput" name="goal1"><br>
-
+    
         <label for="goal2">Introduce your second goal here:</label>
         <input type="text" id="goal2" name="goal2"><br>
-
+    
         <button type="submit">Submit!</button>
     </form>
-
+    
     <script>
         document.getElementById('goalForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const goal = document.getElementById('goalInput').value;
+            event.preventDefault(); // Prevent the default form submission
+    
+            // Collecting all needed data from the form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const goal1 = document.getElementById('goalInput').value;
+            const goal2 = document.getElementById('goal2').value;
+    
+            // Creating an object to send as JSON
+            const formData = {
+                name: name,
+                email: email,
+                goals: [goal1, goal2]
+            };
+    
+            // Fetch API to send data to the server
             fetch('/api/storeGoals', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ goal: goal })
+                body: JSON.stringify(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
-                window.location.href = '/main.html'; // Redirect to main page
+                console.log('Success:', data);
+                window.location.href = '/main.html'; // Redirect to main page after success
             })
             .catch(error => console.error('Error storing the goals:', error));
         });
     </script>
-
-    <footer>
         © 2024 Web Service. All rights reserved.
     </footer>
 </body>
