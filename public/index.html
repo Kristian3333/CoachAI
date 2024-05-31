@@ -5,80 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoachAI</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For icons -->
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>CoachAI</h1>
-            <button onclick="toggleTheme()" id="themeToggle"><i class="fas fa-moon"></i></button>
-        </div>
-        <div class="header-image">
-                <img src="header-image.jpg" alt="AI Technology Image" id="floatingImage">
-                <p id="chatText">Click to open chat</p>
-            </a>
-        </div>
-        
+        <h1>CoachAI</h1>
+        <p>Empowering businesses to achieve peak performance through personalized AI-driven coaching and accountability solutions that seamlessly integrate with company culture and daily operations</p>
     </header>
-    
-    <main>
-        <section class="mission-statement">
-            <p>Empowering businesses to achieve peak performance through personalized AI-driven coaching and accountability solutions that seamlessly integrate with company culture and daily operations</p>
-        </section>
-        
-        <section class="testimonials">
-            <h2>Client Testimonials</h2>
-            <div class="testimonial">
-                <img src="client1.jpg" alt="Client 1">
-                <blockquote>"This service has transformed our business!"</blockquote>
-                <p>- Client 1</p>
-            </div>
-            <div class="testimonial">
-                <img src="client2.jpg" alt="Client 2">
-                <blockquote>"A remarkable improvement in our operations."</blockquote>
-                <p>- Client 2</p>
-            </div>
-            <div class="testimonial">
-                <img src="client3.jpg" alt="Client 3">
-                <blockquote>"I can't recommend this enough!"</blockquote>
-                <p>- Client 3</p>
-            </div>
-        </section>
-
-        <section class="video-demo">
-            <h2>See What Our Product Can Do</h2>
+    <div id="chatInterface" class="chat-interface">
+        <div class="chat-output" id="chatOutput"></div>
+        <input type="text" id="userInput" class="chat-input">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <img src="chat-icon.png" id="floatingImage" alt="Open Chat" style="cursor:pointer;">
+    <div class="main">
+        <div class="testimonials">
+            <blockquote>"This service has transformed our business!" - Client 1</blockquote>
+            <blockquote>"A remarkable improvement in our operations." - Client 2</blockquote>
+            <blockquote>"I can't recommend this enough!" - Client 3</blockquote>
+        </div>
+        <div class="video-demo">
             <video controls>
                 <source src="demo.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-        </section>
-    </main>
-
-    <footer>
-        <section class="contact-form">
-            <h2>Contact Us</h2>
-            <form action="submit_form.php" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-        <p>© 2024 CoachAI. All rights reserved.</p>
-    </footer>
-
-    <div id="chatInterface" class="chat-interface">
-        <div id="chatOutput" class="chat-output"></div>
-        <input type="text" id="userInput" placeholder="Type your message here..." class="chat-input">
-        <button onclick="sendMessage()">Send</button>
+        </div>
     </div>
-
+    <div class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message"></textarea><br>
+        <button onclick="sendContactForm()">Send Message</button>
+    </div>
+    <footer>
+        © 2024 CoachAI. All rights reserved.
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
