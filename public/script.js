@@ -78,3 +78,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('myForm');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        const formData = new FormData(form);
+        
+        fetch('/api/posts.js', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Something went wrong on api server!');
+            }
+        })
+        .then(response => {
+            console.log('Success:', response);
+            window.location.href = 'main.html'; // Redirect to main.html on success
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+});
