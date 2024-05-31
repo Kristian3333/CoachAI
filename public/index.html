@@ -4,66 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Your Goals</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello!</h1>
-    <p>Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
+    <header>
+        <h1>Hello!</h1>
+    </header>
 
-    <form id="goalForm">
-        <label for="name">Introduce your name:</label>
-        <input type="text" id="name" name="name"><br>
-    
-        <label for="email">Introduce your email:</label>
-        <input type="email" id="email" name="email"><br>
-    
-        <label for="goalInput">Introduce your first goal here:</label>
-        <input type="text" id="goalInput" name="goal1"><br>
-    
-        <label for="goal2">Introduce your second goal here:</label>
-        <input type="text" id="goal2" name="goal2"><br>
-    
-        <button type="submit">Submit!</button>
-    </form>
-    
-    <script>
-        document.getElementById('goalForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-    
-            // Collecting all needed data from the form
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const goal1 = document.getElementById('goalInput').value;
-            const goal2 = document.getElementById('goal2').value;
-    
-            // Creating an object to send as JSON
-            const formData = {
-                name: name,
-                email: email,
-                goals: [goal1, goal2]
-            };
-    
-            // Fetch API to send data to the server
-            fetch('/api/storeGoals', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = '/main.html'; // Redirect to main page after success
-            })
-            .catch(error => console.error('Error storing the goals:', error));
-        });
-    </script>
-        © 2024 Web Service. All rights reserved.
+    <div id="main-content">
+        <p> Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
+        
+        <!-- Form for submitting goals -->
+        <form action="/api/posts.js" method="POST">
+            <label for="name">Introduce your name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Introduce your email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="firstGoal">Introduce your first goal here:</label>
+            <input type="text" id="firstGoal" name="firstGoal" required>
+
+            <label for="secondGoal">Introduce your second goal here:</label>
+            <input type="text" id="secondGoal" name="secondGoal" required>
+
+            <button type="submit">Submit!</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2024 Web Service. All rights reserved.</p>
     </footer>
 </body>
 </html>
