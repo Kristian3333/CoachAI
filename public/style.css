@@ -2,9 +2,11 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #121212; /* Dark background for better contrast */
     color: #e0e0e0; /* Light text for readability */
+    height: 100%; /* Ensure full height */
+    font-size: 16px; /* Base font size */
 }
 
 header {
@@ -15,24 +17,19 @@ header {
 }
 
 .header-content h1 {
-    font-size: 48px;
+    font-size: 2.5em; /* Large font size for headers */
     font-weight: bold;
+    text-shadow: 2px 2px 4px #000; /* Text shadow for depth */
 }
 
 .header-content button {
     background: none;
     border: none;
     color: inherit;
-    font-size: 24px;
+    font-size: 1.5em; /* Larger font size for buttons */
     cursor: pointer;
     display: inline-block;
     margin: 0 20px;
-}
-
-.header-image {
-    position: fixed;
-    right: 20px;
-    top: 100px;
 }
 
 .header-image img {
@@ -42,11 +39,12 @@ header {
 }
 
 #chatText {
-    color: #ffffff; /* White text for visibility */
+    color: #ffffff;
     text-align: center;
     position: fixed;
     right: 20px;
-    top: 210px; /* Positioned right below the image */
+    top: 210px;
+    font-size: 1.2em; /* Larger font size for visibility */
 }
 
 footer {
@@ -54,41 +52,47 @@ footer {
     color: #cccccc;
     text-align: center;
     padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    font-size: 1em;
 }
 
 /* Styles for Chat Interface */
-#chatInterface {
+.chat-interface {
+    display: none;
     position: fixed;
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    height: 90%;
-    background-color: #4c2a85;
+    width: 80%;
+    height: 80%;
+    background-color: purple;
     color: white;
     border: 1px solid orange;
     box-shadow: 0 0 20px orange;
-    display: none;
     z-index: 1001;
     overflow: auto;
+    padding: 20px;
+    box-sizing: border-box;
     border-radius: 10px;
+    font-size: 1.2em; /* Increased font size in chat interface */
 }
 
-#chatOutput {
-    height: 80%;
+.chat-output {
+    height: 70%;
     overflow-y: auto;
     background: #350d36;
     padding: 10px;
     border-bottom: 1px solid orange;
 }
 
-#userInput {
+.chat-input {
     width: calc(100% - 20px);
     padding: 10px;
+    margin-top: 10px;
     border: none;
-    border-top: 1px solid orange;
     background-color: #4c2a85;
-    color: white;
 }
 
 /* Additional styles for message distinction */
@@ -96,6 +100,7 @@ footer {
     padding: 5px;
     margin: 5px 0;
     border-radius: 5px;
+    font-weight: bold; /* Make text bold */
 }
 
 .user-message {
@@ -114,7 +119,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-    #chatInterface {
+    .chat-interface {
         width: 100%;
         height: 100%;
         border-radius: 0;
