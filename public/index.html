@@ -4,36 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Your Goals</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        form div {
+            margin-bottom: 10px;
+        }
+        label, input {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hello!</h1>
-    </header>
+    <h1>Hello!</h1>
+    <p>Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
 
-    <div id="main-content">
-        <p> Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
-        
-        <!-- Form for submitting goals -->
-        <form action="/api/posts.js" method="POST">
+    <form action="/api/goals" method="POST">
+        <div>
             <label for="name">Introduce your name:</label>
             <input type="text" id="name" name="name" required>
-
+        </div>
+        <div>
             <label for="email">Introduce your email:</label>
             <input type="text" id="email" name="email" required>
-
+        </div>
+        <div>
             <label for="firstGoal">Introduce your first goal here:</label>
             <input type="text" id="firstGoal" name="firstGoal" required>
-
+        </div>
+        <div>
             <label for="secondGoal">Introduce your second goal here:</label>
             <input type="text" id="secondGoal" name="secondGoal" required>
-
-            <button type="submit">Submit!</button>
-        </form>
-    </div>
+        </div>
+        <button type="submit">Submit!</button>
+    </form>
 
     <footer>
-        <p>© 2024 Web Service. All rights reserved.</p>
+        © 2024 Web Service. All rights reserved.
     </footer>
 </body>
 </html>

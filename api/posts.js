@@ -1,30 +1,31 @@
 // api/posts.js
 const express = require('express');
 const dbConnect = require('../lib/dbConnect');
-const Goal = require('../models/Goal');  // Correctly imported as Goal
+const Goal = require('../models/Goal');
 
 const router = express.Router();
 
 router.get('/goals', async (req, res) => {
     await dbConnect();
     try {
-        const goals = await Goal.find();  // Changed from Post.find() to Goal.find()
-        res.status(200).json(goals);  // Changed from posts to goals
+        const goals = await Goal.find();
+        res.status(200).json(goals);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error retrieving goals');  // Changed from posts to goals
+        res.status(500).send('Error retrieving goals');
     }
 });
 
 router.post('/goals', async (req, res) => {
     await dbConnect();
     try {
-        const newGoal = new Goal(req.body);  // Changed from new Post to new Goal
+        const newGoal = new Goal(req.body);
         await newGoal.save();
-        res.status(201).send('Goal saved successfully');  // Added success message and changed status to 201
+        // Redirect to main.html after successful save
+        res.redirect('/main.html');
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error saving goal');  // Changed from post to goal
+        res.status(500).send('Error saving goal');
     }
 });
 
