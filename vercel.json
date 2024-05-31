@@ -1,7 +1,9 @@
 {
     "version": 2,
     "routes": [
+        { "src": "/", "dest": "/first.html" },
         { "src": "/api/(.*)", "dest": "/api/$1.js" },
-        { "src": "/(.*)", "dest": "/first.html" }
+        { "src": "/(.*)", "dest": "/public/$1" }
+      
     ]
 }
