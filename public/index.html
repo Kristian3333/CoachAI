@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Interface</title>
     <link rel="stylesheet" href="style.css">
-    <title>Welcome to Our Service</title>
 </head>
 <body>
-    <h1>Hello!</h1>
-    <p>Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
-    <form id="goalForm">
-        <label for="goalInput">Submit Your Goals:</label>
-        <input type="text" id="goalInput" name="goal" required>
-        <button type="submit">Submit Goals</button>
-    </form>
+    <header>
+        <div class="header-content">
+            <h1>Welcome to Our Service</h1>
+        </div>
+    </header>
 
-    <script>
-        document.getElementById('goalForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const goal = document.getElementById('goalInput').value;
-            fetch('/api/storeGoals', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ goal: goal })
-            })
-            .then(response => response.json())
-            .then(data => {
-                window.location.href = '/main.html'; // Redirect to main page
-            })
-            .catch(error => console.error('Error storing the goals:', error));
-        });
-    </script>
+    <div id="main-content">
+        <p>Hello! Our mission is to help you integrate AI seamlessly into your daily life to achieve your goals.</p>
+        <button>Click Here</button>
+    </div>
+
+    <div id="chatInterface">
+        <div id="chatOutput">
+            <!-- Chat messages will appear here -->
+        </div>
+        <input type="text" id="userInput" placeholder="Type your message...">
+    </div>
+
+    <footer>
+        <p>© 2024 Web Service. All rights reserved.</p>
+    </footer>
 </body>
 </html>
